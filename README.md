@@ -77,6 +77,37 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+In the traditional Observer pattern, the Subscriber role is often 
+represented as an interface, fostering loose coupling between the subject 
+and its observers. However, in the specific scenario of BambangShop, it 
+seems that a single Model struct could adequately serve the purpose. 
+Rust's ownership system offers a degree of loose coupling without the 
+explicit need for interfaces. If all observers share similar update logic, 
+consolidating them within a single Model struct, responsible for both data 
+management and notification dissemination, could streamline the design. 
+Nonetheless, interfaces might prove beneficial if there's a necessity for 
+diverse update behaviors or if the application anticipates dynamically 
+adding observers during runtime.
+
+Regarding the management of unique identifiers such as the id in Program 
+and the url in Subscriber, the choice between using a simple Vec or 
+DashMap is pivotal. While a Vec could suffice for maintaining a list, 
+DashMap presents several advantages, particularly in ensuring uniqueness 
+and expediting retrieval. DashMap's key-based lookup mechanism inherently 
+guards against accidental duplicates, minimizing the risk of 
+inconsistencies or errors that may arise from inadvertent replication.
+
+In the Rust programming ecosystem, the stringent compiler constraints 
+inherently enforce the development of thread-safe applications. With 
+respect to the List of Subscribers (SUBSCRIBERS) static variable, although 
+a Singleton pattern might offer the allure of a unified access point, 
+opting for DashMap for ensuring thread safety seems judicious. DashMap's 
+design explicitly caters to concurrent access, obviating the need for 
+additional safeguards like mutexes typically associated with Singleton 
+implementations. Given the existing utilization of DashMap for managing 
+the subscriber list and its inherent suitability for concurrent 
+environments, maintaining its usage is prudent to uphold the thread-safe 
+integrity of the application.
 
 #### Reflection Publisher-2
 
