@@ -7,7 +7,8 @@ use crate::model::product:: Product;
 use crate::model:: subscriber:: Subscriber;
 use crate::repository::subscriber::SubscriberRepository;
 
-pub struct NotificationService;
+pub struct NotificationService{
+}
 
 impl NotificationService {
     pub fn subscribe(product_type: &str, subscriber: Subscriber) -> Result<Subscriber> {
@@ -29,3 +30,4 @@ impl NotificationService {
         }
             return Ok(result.unwrap());
     }
+}
