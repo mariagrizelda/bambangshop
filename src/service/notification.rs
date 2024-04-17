@@ -7,8 +7,7 @@ use crate::model::product:: Product;
 use crate::model:: subscriber:: Subscriber;
 use crate::repository::subscriber::SubscriberRepository;
 
-pub struct NotificationService{
-}
+pub struct NotificationService;
 
 impl NotificationService {
     pub fn subscribe(product_type: &str, subscriber: Subscriber) -> Result<Subscriber> {
@@ -30,7 +29,7 @@ impl NotificationService {
         }
             return Ok(result.unwrap());
     }
-    
+
     pub fn notify(&self, product_type: &str, status: &str, product: Product) {
         let mut payload: Notification = Notification {
             product_title: product.clone().title,
